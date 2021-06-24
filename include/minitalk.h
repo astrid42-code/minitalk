@@ -1,14 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_server.c                                        :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/21 20:42:27 by astridgault       #+#    #+#             */
-/*   Updated: 2021/06/24 12:21:40 by asgaulti         ###   ########.fr       */
+/*   Created: 2021/06/24 12:17:53 by asgaulti          #+#    #+#             */
+/*   Updated: 2021/06/24 12:27:15 by asgaulti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#ifndef MINITALK_H
+# define MINITALK_H
 
+# include <signal.h>
+# include <sys/type.h>
+# include <stdlib.h>
+# include <unistd.h>
+
+#endif

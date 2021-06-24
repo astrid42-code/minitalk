@@ -3,42 +3,42 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astridgaultier <astridgaultier@student.    +#+  +:+       +#+         #
+#    By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 20:39:07 by astridgault       #+#    #+#              #
-#    Updated: 2021/06/21 20:41:05 by astridgault      ###   ########.fr        #
+#    Updated: 2021/06/24 12:21:02 by asgaulti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-int	ft_atoi(const char *str)
-{
-	int i;
-	int sign;
-	int result;
+NAME	=	minitalk
 
-	i = 0;
-	sign = 1;
-	result = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-')
-	{
-		sign = -1;
-		i++;
-	}
-	else if (str[i] == '+')
-		i++;
-	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
-	{
-		result = (result * 10) + (str[i] - 48);
-		i++;
-	}
-	return (result * sign);
-}
+SRCS	=	
 
-int	ft_isalnum(int c)
-{
-	if (ft_isalpha(c) == 1 || ft_isdigit(c) == 1)
-		return (1);
-	return (0);
-}
+PATH_SRCS = srcs/
+
+OBJS	=	${addprefix ${PATH_SRCS}, ${SRCS:.c=.o}}
+
+CC		=	clang
+RM		=	rm -f
+CFLAGS	=	-Wall -Werror -Wextra 
+
+
+INCL	=	include
+
+.c.o:
+			${CC} ${CFLAGS} -I${INCL} -g -c $< -o ${<:.c=.o}
+
+$(NAME):	${OBJS}
+			${CC} ${CFLAGS} ${LFLAGS} ${OBJS} -o ${NAME}
+
+all:		${NAME}
+
+clean:
+			${RM} ${OBJS}
+
+fclean:		clean
+			${RM} ${NAME}
+					
+re:			fclean all
+
+.PHONY:		all clean fclean re
