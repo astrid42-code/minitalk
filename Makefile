@@ -3,41 +3,47 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+         #
+#    By: asgaulti@student.42.fr <asgaulti>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 20:39:07 by astridgault       #+#    #+#              #
-#    Updated: 2021/06/24 12:21:02 by asgaulti         ###   ########.fr        #
+#    Updated: 2021/07/08 01:13:38 by asgaulti@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	minitalk
+SERVER	=	./server/server
 
-SRCS	=	
+CLIENT	=	./client/client
 
-PATH_SRCS = srcs/
+SRCS_SERVER	= ./server/ft_server.c ./server/ft_utils.c
 
-OBJS	=	${addprefix ${PATH_SRCS}, ${SRCS:.c=.o}}
+SRCS_CLIENT	= ./client/ft_client.c ./client/ft_utils.c
 
-CC		=	clang
+OBJS_SERVER	=	${SRCS_SERVER:.c=.o}
+
+OBJS_CLIENT	=	${SRCS_CLIENT:.c=.o}
+
+CC		=	clang-9
 RM		=	rm -f
-CFLAGS	=	-Wall -Werror -Wextra 
-
+CFLAGS	=	-Wall -Werror -Wextra
 
 INCL	=	include
 
 .c.o:
 			${CC} ${CFLAGS} -I${INCL} -g -c $< -o ${<:.c=.o}
 
-$(NAME):	${OBJS}
-			${CC} ${CFLAGS} ${LFLAGS} ${OBJS} -o ${NAME}
+all:		${SERVER} ${CLIENT}
 
-all:		${NAME}
+$(SERVER):	${OBJS_SERVER}
+			${CC} ${CFLAGS} -o ${SERVER} ${OBJS_SERVER}
+
+$(CLIENT):	${OBJS_CLIENT}
+			${CC} ${CFLAGS} -o ${CLIENT} ${OBJS_CLIENT}
 
 clean:
-			${RM} ${OBJS}
+			${RM} ${OBJS_SERVER} ${OBJS_CLIENT}
 
 fclean:		clean
-			${RM} ${NAME}
+			${RM} ${OBJS_SERVER} ${OBJS_CLIENT}
 					
 re:			fclean all
 

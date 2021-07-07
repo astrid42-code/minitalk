@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_client.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asgaulti@student.42.fr <asgaulti>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 20:42:44 by astridgault       #+#    #+#             */
-/*   Updated: 2021/06/30 17:53:38 by asgaulti         ###   ########.fr       */
+/*   Updated: 2021/07/08 01:09:25 by asgaulti@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,32 @@
 
 int	main(int ac, char **av)
 {
-	int	pid;
+	pid_t	pid;
+	int		nbr;
 
-	if (ac == 3)
+	pid = 0;
+	if (ac != 3)
 	{
-		
-		//recevoir le signal du serveur et l'envoyer aux fcts qui traduisent le binaire recu en char / int ...
+		write(1, "Wrong number of arguments\n", 26);
+		EXIT_FAILURE;
 	}
 	else
-		//msg erreur?
+	{
+		nbr = ft_atoi(av[1]);
+		if (ft_isdigit(nbr) == 0)
+		{
+			write(1, "First argument is not a number\n", 31);
+			return (1); // ou exit?
+		}
+		pid = ft_atoi(av[1]);
+	}
+	if (pid <= 1)
+	{
+		write(1, "Wrong PID\n", 10);
+		EXIT_FAILURE;
+	}
+	//ft_treat_arg(pid, av[2]);
+		// envoyer l'arg[2] en binaire au client
+		//recevoir le signal du serveur et l'envoyer aux fcts qui traduisent le binaire recu en char / int ...
 	return (0);
 }

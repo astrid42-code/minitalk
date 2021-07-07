@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_server.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asgaulti <asgaulti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asgaulti@student.42.fr <asgaulti>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 20:42:27 by astridgault       #+#    #+#             */
-/*   Updated: 2021/06/30 17:57:11 by asgaulti         ###   ########.fr       */
+/*   Updated: 2021/07/08 01:16:27 by asgaulti@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 int	main(int ac, char **av)
 {
-	if (ac == 3)
-	{
-		// verifier que av[1] = nbr?
-		// envoyer l'arg[2] en binaire au client
-	}
+	(void)av;
+	
+	if (ac != 1)		
+		write(1, "Invalid parameters\n", 19);
 	else
-		//msg erreur?
+	{
+		write(1, "PID = ", 6);
+		ft_putnbr(getpid());
+		write(1, "\n", 1);
+	}
 	return (0);
 }
