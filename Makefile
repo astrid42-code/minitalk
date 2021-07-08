@@ -40,10 +40,10 @@ $(CLIENT):	${OBJS_CLIENT}
 			${CC} ${CFLAGS} -o ${CLIENT} ${OBJS_CLIENT}
 
 clean:
-			${RM} ${OBJS_SERVER} ${OBJS_CLIENT}
+			${RM} ${OBJS_SERVER} ${OBJS_CLIENT} $(SERVER) $(CLIENT)
 
 fclean:		clean
-			${RM} ${OBJS_SERVER} ${OBJS_CLIENT}
+			${RM} ${OBJS_SERVER} ${OBJS_CLIENT} $(SERVER) $(CLIENT)
 					
 re:			fclean all
 
