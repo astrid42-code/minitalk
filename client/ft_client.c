@@ -15,7 +15,8 @@
 int	main(int ac, char **av)
 {
 	pid_t	pid;
-	int		nbr;
+	int		j;
+	//int		nbr;
 
 	pid = 0;
 	if (ac != 3)
@@ -25,11 +26,15 @@ int	main(int ac, char **av)
 	}
 	else
 	{
-		nbr = ft_atoi(av[1]);
-		if (ft_isdigit(nbr) == 0)
+		j = 0;
+		while (av[1][j])
 		{
-			write(1, "First argument is not a number\n", 31);
-			return (1); // ou exit?
+			if (ft_isdigit(av[1][j]) == 0)
+			{
+				write(1, "First argument is not a number\n", 31);
+				return (1); // ou exit?
+			}
+			j++;
 		}
 		pid = ft_atoi(av[1]);
 	}

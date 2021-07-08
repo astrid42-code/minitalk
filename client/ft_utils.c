@@ -26,8 +26,9 @@ int	ft_isalpha(int c)
 	return (1);
 }
 
-int	ft_isdigit(int c)
+int	ft_isdigit(char c)
 {
+
 	if (!(c >= '0' && c <= '9'))
 		return (0);
 	return (1);
