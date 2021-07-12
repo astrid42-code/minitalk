@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_client.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asgaulti@student.42.fr <asgaulti>          +#+  +:+       +#+        */
+/*   By: astridgaultier <astridgaultier@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 20:42:44 by astridgault       #+#    #+#             */
-/*   Updated: 2021/07/08 01:09:25 by asgaulti@st      ###   ########.fr       */
+/*   Updated: 2021/07/12 14:57:50 by astridgault      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,46 @@ int	main(int ac, char **av)
 		write(1, "Wrong PID\n", 10);
 		EXIT_FAILURE;
 	}
-	//ft_treat_arg(pid, av[2]);
-		// envoyer l'arg[2] en binaire au client
-		//recevoir le signal du serveur et l'envoyer aux fcts qui traduisent le binaire recu en char / int ...
+	ft_treat_arg(pid, av[2]);
 	return (0);
+}
+
+void	ft_find_bit(int pid, char *str)
+{
+	int bit;
+	int count;
+	int i;
+
+	count = 0;
+	i = 0;
+	while (str[i])
+	{
+		c = 0;
+		while (c < 8)
+		{
+			bit |= (str[i] >> c++);
+			ft_send_sig(pid, bit);
+		}
+		i++;
+	}
+}
+
+void	ft_send_sig(int pid, int bit)
+{
+	if (bit == 0)
+	{
+		if (kill(pid, SIGUSR1) == -1)
+		{
+			write(1, "Sigusr1 error\n", 14);
+			EXIT_FAILURE;
+		}
+	}
+	if (bit == 1)
+	{
+		if (kill(pid, SIGUSR2) == -1)
+		{
+			write(1, "Sigusr2 error\n", 14);
+			EXIT_FAILURE;
+		}
+	}
 }

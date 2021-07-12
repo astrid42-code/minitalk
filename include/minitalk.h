@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asgaulti@student.42.fr <asgaulti>          +#+  +:+       +#+        */
+/*   By: astridgaultier <astridgaultier@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 12:17:53 by asgaulti          #+#    #+#             */
-/*   Updated: 2021/07/08 01:08:31 by asgaulti@st      ###   ########.fr       */
+/*   Updated: 2021/07/12 14:52:48 by astridgault      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int	ft_atoi(const char *str);
 void	ft_putnbr(int nb);
 int	ft_strlen(char *str);
 void	ft_putchar(char c);
+void	ft_find_bit(int pid, char *str);
 
 #endif
