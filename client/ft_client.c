@@ -6,7 +6,7 @@
 /*   By: astridgaultier <astridgaultier@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 20:42:44 by astridgault       #+#    #+#             */
-/*   Updated: 2021/07/12 14:57:50 by astridgault      ###   ########.fr       */
+/*   Updated: 2021/07/13 17:56:29 by astridgault      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ int	main(int ac, char **av)
 		printf("PID = %d av = %s\n", pid, av[1]);
 	}
 	// comment vérifier que c le meme pid que celui du server??
-	if (pid <= 1)
+/*	if (pid <= 1)
 	{
 		write(1, "Wrong PID\n", 10);
 		exit (EXIT_FAILURE);
 	}
-	ft_find_bit(pid, av[2]);
+*/	ft_find_bit(pid, av[2]);
 	return (0);
 }
 

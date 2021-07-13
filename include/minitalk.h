@@ -6,7 +6,7 @@
 /*   By: astridgaultier <astridgaultier@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 12:17:53 by asgaulti          #+#    #+#             */
-/*   Updated: 2021/07/12 14:52:48 by astridgault      ###   ########.fr       */
+/*   Updated: 2021/07/13 18:17:16 by astridgault      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@
 # include <unistd.h>
 # include <stdio.h>
 
-int     main(int ac, char **av);
+int     main(int ac);
 void	ft_find_bit(int pid, char *str);
 void	ft_send_signal(int pid, int bit);
+void	ft_client_signal(int sig);
+void	ft_treat_sigusr(int sig);
 
 // utils
 int	    ft_isalnum(int c);
