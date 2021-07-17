@@ -19,11 +19,18 @@
 # include <unistd.h>
 # include <stdio.h>
 
-int     main(int ac);
+typedef struct  s_bit
+{
+    char c;
+    int size;
+}               t_bit;
+
+int     main(int ac, char **av);
 void	ft_find_bit(int pid, char *str);
 void	ft_send_signal(int pid, int bit);
-void	ft_client_signal(int sig);
-void	ft_treat_sigusr(int sig);
+void	ft_get_bit(int sig);
+//void	ft_get_signal(t_bit *bit, int sig);
+//void	ft_treat_sigusr(t_bit *bit, int sig);
 
 // utils
 int	    ft_isalnum(int c);

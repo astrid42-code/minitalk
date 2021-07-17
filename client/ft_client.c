@@ -36,7 +36,7 @@ int	main(int ac, char **av)
 			j++;
 		}
 		pid = ft_atoi(av[1]);
-		printf("PID = %d av = %s\n", pid, av[1]);
+		//printf("PID = %d av = %s\n", pid, av[1]);
 	}
 	// comment vérifier que c le meme pid que celui du server??
 /*	if (pid <= 1)
@@ -55,13 +55,14 @@ void	ft_find_bit(int pid, char *str)
 	int i;
 
 	i = 0;
-	bit = 0;
 	while (str[i])
 	{
+		bit = 0;
 		count = 0;
 		while (count < 8)
 		{
-			bit |= (str[i] >> count++);
+			bit = (str[i] >> count++) & 1;
+			printf("bit = %d\n", bit);
 			ft_send_signal(pid, bit);
 		}
 		i++;
