@@ -6,7 +6,7 @@
 /*   By: astridgaultier <astridgaultier@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 20:42:27 by astridgault       #+#    #+#             */
-/*   Updated: 2021/07/13 18:27:16 by astridgault      ###   ########.fr       */
+/*   Updated: 2021/07/17 11:46:07 by astridgault      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 
 void	ft_get_bit(int sig)
 {	
-	static unsigned char		c = 0;
-	static unsigned int		size = 0;
+	static unsigned char	c = 0;
+	static int				size = 0;
 
 	//c = 0;
 	//size = 0;
-	c += (sig << (7 - size++)); // ou egal
+	c |= (sig << (7 - size++));
 	//size++;
 	printf("c = %d size = %d\n", c, size);
 	if (size == 8)
