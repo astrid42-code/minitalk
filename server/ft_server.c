@@ -22,8 +22,11 @@ void	ft_get_bit(int sig)
 
 	//c = 0;
 	//size = 0;
-	c |= (sig << (7 - size++));
+	// |
 	//size++;
+	if (sig == SIGUSR2)
+		c |= (1 << (size)); // rajout de 1 pour le bitshift
+	size++;
 	printf("c = %d size = %d\n", c, size);
 	if (size == 8)
 	{
@@ -57,8 +60,9 @@ int	main(int ac, char **av)
 		ft_putnbr(getpid());
 		write(1, "\n", 1);
 	}
-	while (1)
-	{
+	// pas de while car fct signal est appelée systématiquement quand elle reçoit un signal
+	// = fct de type call-back
+	
 		signal(SIGUSR1, ft_get_bit);
 		signal(SIGUSR2, ft_get_bit);	
 /*		if (signal(SIGUSR1, ft_get_bit) == SIG_ERR)  // params de signal : n° du signal (un int) et action (dans une fct) à faire avec
@@ -71,8 +75,10 @@ int	main(int ac, char **av)
 			write (1, "Wrong SIGUSR2 signal\n", 21);
 			exit (EXIT_FAILURE);
 		}
-*/		pause();
-	}
+*/		
+	while (1)
+		pause();
+	
 	return (0);
 }
 
