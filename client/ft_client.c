@@ -45,6 +45,8 @@ int	main(int ac, char **av)
 		exit (EXIT_FAILURE);
 	}
 */	ft_find_bit(pid, av[2]);
+	//while (1)
+	//	pause();
 	return (0);
 }
 
@@ -62,8 +64,9 @@ void	ft_find_bit(int pid, char *str)
 		while (count < 8)
 		{
 			bit = (str[i] >> count++) & 1;
-			printf("bit = %d\n", bit);
+			//printf("bit = %d\n", bit);
 			ft_send_signal(pid, bit);
+			usleep(420);
 		}
 		i++;
 	}

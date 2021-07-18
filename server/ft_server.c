@@ -27,7 +27,7 @@ void	ft_get_bit(int sig)
 	if (sig == SIGUSR2)
 		c |= (1 << (size)); // rajout de 1 pour le bitshift
 	size++;
-	printf("c = %d size = %d\n", c, size);
+	//printf("c = %d size = %d\n", c, size);
 	if (size == 8)
 	{
 		if (c == '\0') // si c la fin de la cdc
@@ -82,4 +82,4 @@ int	main(int ac, char **av)
 	return (0);
 }
 
-// sig_ign : ignorer le signal
+// mettre une fin (autre que ctrl c)
