@@ -82,4 +82,10 @@ int	main(int ac, char **av)
 	return (0);
 }
 
-// mettre une fin (autre que ctrl c)
+// mettre une fin (autre que ctrl c)?
+// si pid envoyé par client est faux : marque usr2 error > ok ou à modifier? + est=ce que ca dit fermer le programme ou on peut continuer à envoyer des msgs?
+
+
+// pb de performnce (ecriture 1 à 1 des char)
+
+// unicode a l'air géré
