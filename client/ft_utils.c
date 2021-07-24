@@ -12,23 +12,8 @@
 
 #include "minitalk.h"
 
-int	ft_isalnum(int c)
-{
-	if (ft_isalpha(c) == 1 || ft_isdigit(c) == 1)
-		return (1);
-	return (0);
-}
-
-int	ft_isalpha(int c)
-{
-	if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')))
-		return (0);
-	return (1);
-}
-
 int	ft_isdigit(char c)
 {
-
 	if (!(c >= '0' && c <= '9'))
 		return (0);
 	return (1);
@@ -36,9 +21,9 @@ int	ft_isdigit(char c)
 
 int	ft_atoi(const char *str)
 {
-	int i;
-	int sign;
-	int result;
+	int	i;
+	int	sign;
+	int	result;
 
 	i = 0;
 	sign = 1;
@@ -58,50 +43,4 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (result * sign);
-}
-
-void	ft_putnbr(int nb)
-{
-	int n;
-
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb *= -1;
-	}
-	n = nb;
-	if (n > 9)
-	{
-		ft_putnbr(n / 10);
-		ft_putchar((n % 10) + 48);
-	}
-	if (n >= 0 && n <= 9)
-		ft_putchar((n % 10) + 48);
-}
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-/*
-void	ft_putstr(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
-}
-*/
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
 }

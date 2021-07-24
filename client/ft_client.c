@@ -12,49 +12,20 @@
 
 #include "minitalk.h"
 
-int	main(int ac, char **av)
+void	ft_get_msg(int signal_num, siginfo_t *info, void *context)
 {
-	pid_t	pid;
-	int		j;
-
-	pid = 0;
-	if (ac != 3)
-	{
-		write(1, "Wrong number of arguments\n", 26);
-		exit (EXIT_FAILURE);
-	}
-	else
-	{
-		j = 0;
-		while (av[1][j])
-		{
-			if (ft_isdigit(av[1][j]) == 0)
-			{
-				write(1, "First argument is not a number\n", 31);
-				exit (EXIT_FAILURE);
-			}
-			j++;
-		}
-		pid = ft_atoi(av[1]);
-		//printf("PID = %d av = %s\n", pid, av[1]);
-	}
-	// comment vérifier que c le meme pid que celui du server??
-/*	if (pid <= 1)
-	{
-		write(1, "Wrong PID\n", 10);
-		exit (EXIT_FAILURE);
-	}
-*/	ft_find_bit(pid, av[2]);
-	//while (1)
-	//	pause();
-	return (0);
+	(void)signal_num;
+	(void)context;
+	(void)info;
+	write(1, "Message received by server\n", 27);
+	exit(EXIT_SUCCESS);
 }
 
 void	ft_find_bit(int pid, char *str)
 {
-	int bit;
-	int count;
-	int i;
+	int	bit;
+	int	count;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -64,11 +35,17 @@ void	ft_find_bit(int pid, char *str)
 		while (count < 8)
 		{
 			bit = (str[i] >> count++) & 1;
-			//printf("bit = %d\n", bit);
 			ft_send_signal(pid, bit);
-			usleep(420);
+			usleep(42);
 		}
 		i++;
+	}
+	count = 0;
+	while (count < 8)
+	{
+		bit = ('\0' >> count++) & 1;
+		ft_send_signal(pid, bit);
+		usleep(42);
 	}
 }
 
@@ -78,7 +55,7 @@ void	ft_send_signal(int pid, int bit)
 	{
 		if (kill(pid, SIGUSR1) == -1)
 		{
-			write(1, "Sigusr1 error\n", 14);
+			write(1, "Error : signal not send\n", 24);
 			exit (EXIT_FAILURE);
 		}
 	}
@@ -86,8 +63,58 @@ void	ft_send_signal(int pid, int bit)
 	{
 		if (kill(pid, SIGUSR2) == -1)
 		{
-			write(1, "Sigusr2 error\n", 14);
+			write(1, "Error : signal not send\n", 24);
 			exit (EXIT_FAILURE);
 		}
 	}
+}
+
+/*
+** Check if PID is only number
+**
+**	@param av Argv argument
+**
+**	@return true if only number, false otherwise
+*/
+bool	ft_check_av(char **av)
+{
+	int	j;
+
+	j = 0;
+	while (av[1][j])
+	{
+		if (ft_isdigit(av[1][j]) == 0)
+		{
+			return (false);
+		}
+		j++;
+	}
+	return (true);
+}
+
+int	main(int ac, char **av)
+{
+	pid_t				pid;
+	struct sigaction	sa;
+
+	pid = 0;
+	if (ac != 3)
+	{
+		write(1, "Wrong number of arguments\n", 26);
+		exit (EXIT_FAILURE);
+	}
+	else
+	{
+		sa.sa_sigaction = ft_get_msg;
+		sa.sa_flags = SA_SIGINFO;
+		sigaction(SIGUSR1, &sa, NULL);
+		pid = ft_atoi(av[1]);
+		if (ft_check_av(av) == false || pid < 1)
+		{
+			write (1, "Wrong PID\n", 10);
+			exit (EXIT_FAILURE);
+		}
+	}
+	ft_find_bit(pid, av[2]);
+	return (0);
 }
